@@ -1,11 +1,14 @@
-mbtiles-server
+# simple mbtiles server
+
 ==============
 
-Wow. It's really easy to serve mbtiles files without having to host them with Mapbox, just serve them yourself.
-
-First, just create an mbtiles file (via Tilemill probably cause it's freaking amazing), then:
+## How to use
 
 1. `npm install`
-1. `node server.js TILEFILE [PORT]`
+1. `node server.js data/world_zoom_0-2.mbtiles`
 
-Visit [http://localhost:3000/3/1/2.png](http://localhost:3000/3/1/2.png)
+Visit [http://localhost:3000/1/0/0.png](http://localhost:3000/1/0/0.png)
+
+## Reference
+
+* [chelm/mbtiles-server](https://github.com/chelm/mbtiles-server)

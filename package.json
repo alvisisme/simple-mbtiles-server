@@ -1,14 +1,12 @@
 {
-    "name": "mbtile-server"
-  , "description": "A crazy simple mbtiles server in node"
-  , "version": "0.0.1"
-  , "private": false
-  , "author": "Chris Helm"
-  , "dependencies": {
-    "express": "*"
-    , "mbtiles": "*"
-  }
-  , "engines": {
-    "node": "0.8.x"
+  "name": "simple-mbtile-server",
+  "description": "A simple mbtiles server in node",
+  "version": "0.0.1",
+  "private": false,
+  "author": "Alvis Zhao",
+  "dependencies": {
+    "@mapbox/mbtiles": "^0.12.1",
+    "express": "^4.17.1",
+    "sqlite3": "^5.0.0"
   }
 }

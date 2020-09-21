@@ -1,6 +1,6 @@
-var express = require("express"),
-    app = express(),
-    MBTiles = require('mbtiles');
+const express = require("express")
+const app = express()
+const MBTiles = require('@mapbox/mbtiles')
 
 if (process.argv.length < 3) {
   console.log("Error! Missing TILES filename.\nUsage: node server.js TILES [PORT]");
@@ -12,15 +12,16 @@ if (process.argv.length === 4) {
   port = parseInt(process.argv[3]);
 }
 
-var mbtilesLocation = String(process.argv[2]).replace(/\.mbtiles/,'') + '.mbtiles';
+var mbtilesLocation = String(process.argv[2]).replace(/\.mbtiles/,'') + '.mbtiles?mode=ro';
 
 new MBTiles(mbtilesLocation, function(err, mbtiles) {
   if (err) throw err;
   app.get('/:z/:x/:y.*', function(req, res) {
-    var extension = req.param(0);
+    var extension = req.params['0'];
+    console.log(req.params)
     switch (extension) {
       case "png": {
-        mbtiles.getTile(req.param('z'), req.param('x'), req.param('y'), function(err, tile, headers) {
+        mbtiles.getTile(req.params['z'], req.params['x'], req.params['y'], function(err, tile, headers) {
           if (err) {
             res.status(404).send('Tile rendering error: ' + err + '\n');
           } else {
@@ -31,7 +32,7 @@ new MBTiles(mbtilesLocation, function(err, mbtiles) {
         break;
       }
       case "grid.json": {
-        mbtiles.getGrid(req.param('z'), req.param('x'), req.param('y'), function(err, grid, headers) {
+        mbtiles.getGrid(req.params['z'], req.params['x'], req.params['y'], function(err, grid, headers) {
           if (err) {
             res.status(404).send('Grid rendering error: ' + err + '\n');
           } else {
