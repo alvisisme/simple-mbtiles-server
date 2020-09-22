@@ -1,6 +1,9 @@
 const express = require("express")
 const app = express()
+const cors = require('cors')
 const MBTiles = require('@mapbox/mbtiles')
+
+app.use(cors())
 
 if (process.argv.length < 3) {
   console.log("Error! Missing TILES filename.\nUsage: node server.js TILES [PORT]");
